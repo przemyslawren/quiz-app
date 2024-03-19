@@ -21,7 +21,7 @@ const StandardInput: React.FC<Props> = ({
   ]);
 
   return (
-    <div className={inputClassName}>
+    <div className={inputClassName} style={{width: "100%", height: 50}}>
       <input
         type="text"
         placeholder={placeholder}
