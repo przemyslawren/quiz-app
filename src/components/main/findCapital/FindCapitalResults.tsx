@@ -6,6 +6,8 @@ type Props = {
 };
 
 const FindCapitalResults: React.FC<Props> = ({ results }) => {
+  if (!results.length) return null;
+  
   return (
     <table className="ui celled table">
       <thead>

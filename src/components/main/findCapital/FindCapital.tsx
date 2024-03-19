@@ -3,14 +3,19 @@ import './FindCapital.scss';
 import StandardInput from '../../inputs/StandardInput';
 import CapitalResult from '../../../models/CapitalResult.interface';
 import FindCapitalResults from './FindCapitalResults';
+import useDebouncedState from '../../../hooks/useDebouncedState';
 
 const FindCapital = () => {
-  const [inputValue, setInputValue] = useState<string>('');
+  const [inputValue, setInputValue] = useDebouncedState('', 500);
   const [results, setResults] = useState<CapitalResult[]>([]);
 
   useEffect(() => {
     if (inputValue) {
       getResults(inputValue);
+    }
+
+    if (!inputValue) {
+      setResults([]);
     }
   }, [inputValue]); // listening for change in inputValue
 
@@ -37,7 +42,7 @@ const FindCapital = () => {
           setInputValue(value);
         }}
       />
-      <FindCapitalResults results={results}/>
+      <FindCapitalResults results={results} />
     </div>
   );
 };
