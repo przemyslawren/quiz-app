@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import './FindCapital.scss';
 import StandardInput from '../../inputs/StandardInput';
 import CapitalResult from '../../../models/CapitalResult.interface';
@@ -33,6 +33,19 @@ const FindCapital = () => {
   // 3. make an API call to the server to search for the capitals
   // 4. if there are results from ther server - we need another state to set up the results
 
+  //useMemo (JSX element)
+  const CapitalResults = useMemo(
+    () => <FindCapitalResults results={results} />,
+    [results]
+  );
+  // we only change this component if results in dependency array changes
+
+  //useCallback (function) && the difference is that u need to call it
+  const renderResults = useCallback(
+    () => <FindCapitalResults results={results} />,
+    [results]
+  );
+
   return (
     <div className="find-capital__container">
       <StandardInput
@@ -42,7 +55,7 @@ const FindCapital = () => {
           setInputValue(value);
         }}
       />
-      <FindCapitalResults results={results} />
+      {renderResults()}
     </div>
   );
 };

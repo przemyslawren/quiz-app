@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './Main.scss';
-import MassiveButton from '../buttons/MassiveButton';
+import StandardButton from '../buttons/StandardButton';
 import FindCapital from './findCapital/FindCapital';
 import Quiz from './quiz/Quiz';
 
@@ -15,15 +15,25 @@ const Main = () => {
 
   return (
     <div className="main">
+      {appState !== AppState.LANDING_PAGE && (
+        <div style={{ position: 'absolute', left: 50, top: 50 }}>
+          <StandardButton
+            title="Go Back"
+            onClick={() => setAppState(AppState.LANDING_PAGE)}
+          />
+        </div>
+      )}
       {appState === AppState.LANDING_PAGE && (
         <>
-          <MassiveButton
+          <StandardButton
             title="Find a capital"
             onClick={() => setAppState(AppState.FIND_CAPITAL)}
+            isMassive
           />
-          <MassiveButton
+          <StandardButton
             title="Capitals quiz"
             onClick={() => setAppState(AppState.QUIZ)}
+            isMassive
           />
         </>
       )}

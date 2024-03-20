@@ -1,0 +1,16 @@
+.quiz__container {
+  width: 100%;
+  height: 100%;
+  padding: 0 35%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.quiz__buttons {
+  padding: 1% 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
